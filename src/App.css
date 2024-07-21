@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.loginGradiant {
+  background: linear-gradient(180deg, rgba(126, 87, 215, 0) 0%, #7e57d7 100%);
+}
+
+.BTN-purple-gradient {
+  background: linear-gradient(92.19deg, #5a3b8c 53.59%, #9747ff 109.6%);
+}
+
+.global-font-bold {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+}
+.css-ptkaw2-MuiDataGrid-root {
+  border-radius: 15px !important;
+}
+.global-font-light {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+}
+.rounded-20 {
+  border-radius: 20px;
+}
+
+.underline-half {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-half::after {
+  content: "";
+  position: absolute;
+  bottom: -2px; /* Adjust as needed */
+  left: 0;
+  width: 50%;
+  border-bottom: 2px solid black; /* Adjust color and thickness as needed */
+  transform: translateX(1%);
+}
+.p-paginator-bottom {
+  border-radius: 0px 0px 20px 20px;
+}
