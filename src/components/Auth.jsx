@@ -1,8 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
-import { connect } from "react-redux";
 
 const ProtectedRoute = ({ children, logged, userType }) => {
-  console.log("logged", logged);
   const isAuthenticated = logged;
   const location = useLocation();
 

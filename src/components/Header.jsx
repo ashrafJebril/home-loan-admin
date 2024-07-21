@@ -1,8 +1,11 @@
 import PersonIcon from "../assets/icons/UserProfile";
+import { connect } from "react-redux";
 import NotificationsIcon from "../assets/icons/NotificationIcon";
-const Header = () => {
+const Header = ({ userData }) => {
+  console.log(userData);
   return (
-    <div className="h-16 w-full flex items-center justify-end bg-white rounded-[20px] px-7">
+    <div className="h-16 w-full flex items-center justify-between bg-white rounded-[20px] px-7">
+      <div> {userData.role}</div>
       <div className="flex items-center gap-x-4 justify-end min-w-[31%] ">
         <div className="flex items-center gap-x-2 flex-r">
           <div className="w-8 h-8 rounded-full flex justify-center items-center">
@@ -16,9 +19,14 @@ const Header = () => {
           <div className="border p-1 border-gray-400 rounded-full">
             <PersonIcon className={"w-4 h-4"} fill={"#5a3b8d"} />{" "}
           </div>
+          {userData.name}
         </div>
       </div>
     </div>
   );
 };
-export default Header;
+const mapDispatch = (dispatch) => ({});
+const mapState = (state) => ({
+  userData: state.user.data,
+});
+export default connect(mapState, mapDispatch)(Header);
