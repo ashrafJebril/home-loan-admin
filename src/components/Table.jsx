@@ -3,145 +3,21 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 
 import "primereact/resources/themes/lara-light-cyan/theme.css";
-export default function PaginatorBasicDemo({ data }) {
-  useEffect(() => {
-    setCustomers(data);
-  }, [data]);
 
-  const [customers, setCustomers] = useState(
-    data
-    // {
-    //   id: 1000,
-    //   name: "James Butt",
-    //   country: {
-    //     name: "Algeria",
-    //     code: "dz",
-    //   },
-    //   company: "Benton, John B Jr",
-    //   date: "2015-09-13",
-    //   status: "unqualified",
-    //   verified: true,
-    //   activity: 17,
-    //   representative: {
-    //     name: "Ioni Bowcher",
-    //     image: "ionibowcher.png",
-    //   },
-    //   balance: 70663,
-    // },
-    // {
-    //   id: 1000,
-    //   name: "James Butt",
-    //   country: {
-    //     name: "Algeria",
-    //     code: "dz",
-    //   },
-    //   company: "Benton, John B Jr",
-    //   date: "2015-09-13",
-    //   status: "unqualified",
-    //   verified: true,
-    //   activity: 17,
-    //   representative: {
-    //     name: "Ioni Bowcher",
-    //     image: "ionibowcher.png",
-    //   },
-    //   balance: 70663,
-    // },
-    // {
-    //   id: 1000,
-    //   name: "James Butt",
-    //   country: {
-    //     name: "Algeria",
-    //     code: "dz",
-    //   },
-    //   company: "Benton, John B Jr",
-    //   date: "2015-09-13",
-    //   status: "unqualified",
-    //   verified: true,
-    //   activity: 17,
-    //   representative: {
-    //     name: "Ioni Bowcher",
-    //     image: "ionibowcher.png",
-    //   },
-    //   balance: 70663,
-    // },
-    // {
-    //   id: 1000,
-    //   name: "James Butt",
-    //   country: {
-    //     name: "Algeria",
-    //     code: "dz",
-    //   },
-    //   company: "Benton, John B Jr",
-    //   date: "2015-09-13",
-    //   status: "unqualified",
-    //   verified: true,
-    //   activity: 17,
-    //   representative: {
-    //     name: "Ioni Bowcher",
-    //     image: "ionibowcher.png",
-    //   },
-    //   balance: 70663,
-    // },
-    // {
-    //   id: 1000,
-    //   name: "James Butt",
-    //   country: {
-    //     name: "Algeria",
-    //     code: "dz",
-    //   },
-    //   company: "Benton, John B Jr",
-    //   date: "2015-09-13",
-    //   status: "unqualified",
-    //   verified: true,
-    //   activity: 17,
-    //   representative: {
-    //     name: "Ioni Bowcher",
-    //     image: "ionibowcher.png",
-    //   },
-    //   balance: 70663,
-    // },
-    // {
-    //   id: 1000,
-    //   name: "James Butt",
-    //   country: {
-    //     name: "Algeria",
-    //     code: "dz",
-    //   },
-    //   company: "Benton, John B Jr",
-    //   date: "2015-09-13",
-    //   status: "unqualified",
-    //   verified: true,
-    //   activity: 17,
-    //   representative: {
-    //     name: "Ioni Bowcher",
-    //     image: "ionibowcher.png",
-    //   },
-    //   balance: 70663,
-    // },
-    // {
-    //   id: 1000,
-    //   name: "James Butt",
-    //   country: {
-    //     name: "Algeria",
-    //     code: "dz",
-    //   },
-    //   company: "Benton, John B Jr",
-    //   date: "2015-09-13",
-    //   status: "unqualified",
-    //   verified: true,
-    //   activity: 17,
-    //   representative: {
-    //     name: "Ioni Bowcher",
-    //     image: "ionibowcher.png",
-    //   },
-    //   balance: 70663,
-    // },
-  );
+export default function PaginatorBasicDemo({ data, columns, getLeadData }) {
+  console.log(data);
+  const renderCell = (rowData, column) => {
+    return (
+      <div onClick={getLeadData ? () => getLeadData(rowData) : ""}>
+        {rowData[column.field]}
+      </div>
+    );
+  };
 
   return (
     <DataTable
       className="rounded-lg"
-      value={customers}
+      value={data}
       paginator
       rows={5}
       rowsPerPageOptions={[5, 10, 25, 50]}
@@ -152,25 +28,17 @@ export default function PaginatorBasicDemo({ data }) {
         overflow: "hidden",
       }}
     >
-      <Column field="id" header="ID" style={{ width: "25%" }}></Column>
-      <Column field="name" header="Name" style={{ width: "25%" }}></Column>
-      <Column field="email" header="Name" style={{ width: "25%" }}></Column>
-      {/* <Column field="name" header="Name" style={{ width: "25%" }}></Column>
-      <Column
-        field="country.name"
-        header="Country"
-        style={{ width: "25%" }}
-      ></Column>
-      <Column
-        field="company"
-        header="Company"
-        style={{ width: "25%" }}
-      ></Column>
-      <Column
-        field="representative.name"
-        header="Representative"
-        style={{ width: "25%" }}
-      ></Column> */}
+      {columns.map((e) => {
+        return (
+          <Column
+            key={e.field}
+            field={e.field}
+            header={e.header}
+            body={(rowData) => renderCell(rowData, e)}
+            style={{ cursor: "pointer" }}
+          ></Column>
+        );
+      })}
     </DataTable>
   );
 }

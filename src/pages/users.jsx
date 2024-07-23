@@ -3,7 +3,14 @@ import PageBar from "../components/PageBar";
 import { useState, useEffect } from "react";
 import Dialog from "../components/AddUserDialog";
 import { connect } from "react-redux";
+
 const Users = ({ addUsers, getUsers, users }) => {
+  const columns = [
+    { field: "id", header: "ID" },
+    { field: "name", header: "Name" },
+    { field: "email", header: "Email" },
+  ];
+
   const [showModal, setShowModal] = useState(false);
 
   const showModalFunction = (e) => {
@@ -23,8 +30,12 @@ const Users = ({ addUsers, getUsers, users }) => {
         visible={showModal}
         setVisible={showModalFunction}
       />
-      <PageBar showModal={showModalFunction} text={"Add Broker"} />
-      <Table data={users} />
+      <PageBar
+        pageTitle={"Users"}
+        showModal={showModalFunction}
+        text={"Add Broker"}
+      />
+      <Table columns={columns} data={users} />
     </div>
   );
 };

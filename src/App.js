@@ -6,6 +6,7 @@ import "./App.css";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Users from "./pages/users";
+import Leads from "./pages/leads";
 
 import Layout from "./components/Layout";
 import ProtectedRoute from "./components/Auth";
@@ -51,6 +52,16 @@ function App({ logged }) {
               <ProtectedRoute logged={logged} userType={"Admin"}>
                 <Layout>
                   <Users />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/leads"
+            element={
+              <ProtectedRoute logged={logged} userType={"Admin"}>
+                <Layout>
+                  <Leads />
                 </Layout>
               </ProtectedRoute>
             }
